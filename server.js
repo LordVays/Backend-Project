@@ -1,17 +1,21 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const router = require('./routes/router.js');
 
-require("dotenv").config()
+require("dotenv").config();
+
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use('/api', router);
 
 app.get('/api', (req, res) => {
 
-    res.json({ message: "API work corrected" });
+    res.status(200).json("Server is work");
 
 });
 
@@ -27,7 +31,6 @@ mongoose.connect("mongodb://localhost:27017/backend").then(() => {
 });
 
 
-const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
 
