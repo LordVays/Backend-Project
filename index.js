@@ -4,7 +4,7 @@ const cors = require('cors');
 const authRouter = require('.routers/authRouter.js');
 const productRouter = require('./routers/productRouter')
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3000
 
 const app = express();
 
@@ -24,13 +24,14 @@ app.get('/api', (req, res) => {
 const start = async () => {
 
     try {
-        await mongoose.connect('mongodb://localhost:27017/backend');
+        await mongoose.connect('mongodb://127.0.0.1:27017/backend');
         app.listen(PORT, () => console.log(`Сервер запущен на порту ${PORT}`))
     } catch (e) {
         console.log("Ошибка при запуске сервера", e)
     }
 
 } 
+
 
 
 start()
